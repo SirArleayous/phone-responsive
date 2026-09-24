@@ -1,0 +1,70 @@
+/* ==========================================================================
+   SINEX Dark Tech UI Engine - Authentication Pages Styling
+   ========================================================================== */
+
+.auth-container {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1.5rem;
+  background: radial-gradient(circle at top right, rgba(0, 210, 255, 0.08), transparent 40%),
+              radial-gradient(circle at bottom left, rgba(121, 40, 202, 0.08), transparent 40%),
+              var(--sinex-bg);
+}
+
+.auth-card {
+  width: 100%;
+  max-width: 440px;
+  background: var(--sinex-card);
+  border: 1px solid var(--sinex-card-border);
+  border-radius: 16px;
+  padding: 2.5rem 2rem;
+  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.5);
+}
+
+.auth-header {
+  text-align: center;
+  margin-bottom: 2rem;
+}
+
+.auth-header h1 {
+  font-size: 1.75rem;
+  font-weight: 800;
+  color: #ffffff;
+  margin-bottom: 0.5rem;
+}
+
+.auth-header p {
+  font-size: 0.875rem;
+  color: var(--sinex-text-muted);
+}
+
+.auth-form .form-group {
+  margin-bottom: 1.25rem;
+}
+
+.auth-form label {
+  display: block;
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: var(--sinex-text-muted);
+  margin-bottom: 0.35rem;
+}
+
+.auth-footer {
+  margin-top: 1.5rem;
+  text-align: center;
+  font-size: 0.85rem;
+  color: var(--sinex-text-muted);
+}
+
+.auth-footer a {
+  color: var(--sinex-teal);
+  text-decoration: none;
+  font-weight: 600;
+}
+
+.auth-footer a:hover {
+  text-decoration: underline;
+}

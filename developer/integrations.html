@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Integrations & Webhooks | SINEX Developer</title>
+  <link rel="stylesheet" href="../assets/css/style.css">
+  <link rel="stylesheet" href="../assets/css/responsive.css">
+</head>
+<body style="background: var(--sinex-bg); color: #ffffff; min-height: 100vh; padding-bottom: 5rem;">
+
+  <div style="max-width: 800px; margin: 0 auto; padding: 1.25rem 1rem;">
+    <a href="dashboard.html" style="color: var(--sinex-teal); text-decoration: none; font-size: 0.85rem; font-weight: 700; display: inline-block; margin-bottom: 1rem;">← Back to Console</a>
+
+    <h2 style="margin: 0 0 1.25rem 0; font-size: 1.25rem; font-weight: 800;">Webhook Listener Endpoint Configurations</h2>
+
+    <div class="card-sinex-hero" style="padding: 1.5rem;">
+      <div style="margin-bottom: 1rem;">
+        <label style="display: block; font-size: 0.8rem; font-weight: 600; margin-bottom: 0.35rem;">Webhook Receiver URL</label>
+        <input type="text" class="sinex-input" value="https://api.sinex.io/webhooks/payment-callback" style="margin-bottom: 0.5rem;">
+      </div>
+
+      <div style="margin-bottom: 1.5rem;">
+        <label style="display: block; font-size: 0.8rem; font-weight: 600; margin-bottom: 0.35rem;">Subscribed Events</label>
+        <div style="font-size: 0.85rem; display: flex; flex-direction: column; gap: 0.35rem;">
+          <label><input type="checkbox" checked> task.completed</label>
+          <label><input type="checkbox" checked> campaign.escrow_funded</label>
+          <label><input type="checkbox" checked> withdrawal.processed</label>
+        </div>
+      </div>
+
+      <button class="btn-sinex-primary" style="width: auto;" onclick="alert('Webhook Configuration Saved!');">Save Webhook</button>
+    </div>
+  </div>
+
+</body>
+</html>

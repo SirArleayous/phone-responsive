@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Settings | SINEX</title>
+  <link rel="stylesheet" href="../assets/css/style.css">
+  <link rel="stylesheet" href="../assets/css/responsive.css">
+</head>
+<body style="background: var(--sinex-bg); color: #ffffff; min-height: 100vh; padding-bottom: 5rem;">
+
+  <div style="max-width: 600px; margin: 0 auto; padding: 1.25rem 1rem;">
+    <a href="profile.html" style="color: var(--sinex-teal); text-decoration: none; font-size: 0.85rem; font-weight: 700; display: inline-block; margin-bottom: 1rem;">← Back to Profile</a>
+
+    <div class="card-sinex-hero" style="padding: 1.5rem;">
+      <h2 style="margin: 0 0 1.25rem 0; font-size: 1.25rem;">Account Settings</h2>
+
+      <form action="profile.html" onsubmit="alert('Settings updated!');">
+        <div style="margin-bottom: 1rem;">
+          <label style="display: block; font-size: 0.8rem; font-weight: 600; margin-bottom: 0.35rem;">Update Password</label>
+          <input type="password" class="sinex-input" placeholder="New Password">
+        </div>
+
+        <div style="margin-bottom: 1.25rem;">
+          <label style="display: flex; align-items: center; gap: 0.5rem; font-size: 0.85rem; cursor: pointer;">
+            <input type="checkbox" checked style="accent-color: var(--sinex-teal);">
+            Receive email notifications for new tasks
+          </label>
+        </div>
+
+        <button type="submit" class="btn-sinex-primary">Save Preferences →</button>
+      </form>
+    </div>
+  </div>
+
+</body>
+</html>

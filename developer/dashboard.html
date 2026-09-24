@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Developer Control Center | SINEX</title>
+  <link rel="stylesheet" href="../assets/css/style.css">
+  <link rel="stylesheet" href="../assets/css/responsive.css">
+</head>
+<body style="background: var(--sinex-bg); color: #ffffff; min-height: 100vh; padding-bottom: 5rem;">
+
+  <header style="background: #111827; border-bottom: 1px solid var(--sinex-border); padding: 1rem; position: sticky; top: 0; z-index: 100;">
+    <div style="max-width: 1400px; margin: 0 auto; display: flex; align-items: center; justify-content: space-between;">
+      <div style="display: flex; align-items: center; gap: 0.75rem;">
+        <h2 style="margin: 0; font-size: 1.25rem; font-weight: 800; color: var(--sinex-teal);">SINEX</h2>
+        <span style="background: rgba(0, 210, 255, 0.15); color: var(--sinex-teal); padding: 0.2rem 0.5rem; border-radius: 4px; font-size: 0.75rem; font-weight: 700;">DEVELOPER PORTAL</span>
+      </div>
+      <div style="display: flex; align-items: center; gap: 1rem;">
+        <a href="notifications.html" style="text-decoration: none; font-size: 1.2rem;">🔔</a>
+        <a href="settings.html" style="text-decoration: none; font-size: 1.2rem;">⚙️</a>
+      </div>
+    </div>
+  </header>
+
+  <main style="max-width: 1400px; margin: 0 auto; padding: 1.25rem 1rem;">
+    <div class="card-sinex-hero" style="margin-bottom: 1.5rem; padding: 1.5rem; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1rem;">
+      <div>
+        <h2 style="margin: 0 0 0.5rem 0;">Developer Console Overview</h2>
+        <p style="margin: 0; font-size: 0.875rem; color: var(--sinex-text-muted);">Monitor infrastructure health, manage API endpoints, review error logs, and configure integrations.</p>
+      </div>
+      <a href="api.html" class="btn-sinex-primary" style="padding: 0.6rem 1.25rem; text-decoration: none; width: auto;">Manage API Keys</a>
+    </div>
+
+    <!-- Real-time Infrastructure Telemetry -->
+    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 1rem; margin-bottom: 1.5rem;">
+      <div class="card-sinex-hero" style="padding: 1.25rem;">
+        <div style="font-size: 0.8rem; color: var(--sinex-text-muted); margin-bottom: 0.35rem;">System Uptime</div>
+        <div style="font-size: 1.5rem; font-weight: 800; color: #10b981;">99.98%</div>
+        <span style="font-size: 0.75rem; color: #10b981; font-weight: 700;">All Services Operational</span>
+      </div>
+
+      <div class="card-sinex-hero" style="padding: 1.25rem;">
+        <div style="font-size: 0.8rem; color: var(--sinex-text-muted); margin-bottom: 0.35rem;">Average Response Time</div>
+        <div style="font-size: 1.5rem; font-weight: 800; color: var(--sinex-teal);">42ms</div>
+        <span style="font-size: 0.75rem; color: #10b981; font-weight: 700;">↓ 4ms Acceleration</span>
+      </div>
+
+      <div class="card-sinex-hero" style="padding: 1.25rem;">
+        <div style="font-size: 0.8rem; color: var(--sinex-text-muted); margin-bottom: 0.35rem;">API Requests (24h)</div>
+        <div style="font-size: 1.5rem; font-weight: 800; color: #ffffff;">1,420,890</div>
+        <span style="font-size: 0.75rem; color: var(--sinex-text-muted);">Peak: 1,850 req/sec</span>
+      </div>
+
+      <div class="card-sinex-hero" style="padding: 1.25rem;">
+        <div style="font-size: 0.8rem; color: var(--sinex-text-muted); margin-bottom: 0.35rem;">Unhandled Exceptions</div>
+        <div style="font-size: 1.5rem; font-weight: 800; color: #ef4444;">3</div>
+        <span style="font-size: 0.75rem; color: #ef4444; font-weight: 700;">Requires Review</span>
+      </div>
+    </div>
+
+    <!-- Developer Navigation Cards -->
+    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1rem;">
+      <a href="system-health.html" class="card-sinex-hero" style="padding: 1.25rem; text-decoration: none; color: #fff;">
+        <h3 style="margin: 0 0 0.5rem 0; font-size: 1rem; color: var(--sinex-teal);">🟢 System Health</h3>
+        <p style="margin: 0; font-size: 0.8rem; color: var(--sinex-text-muted);">Database clusters, microservice latencies, and server memory allocations.</p>
+      </a>
+
+      <a href="logs.html" class="card-sinex-hero" style="padding: 1.25rem; text-decoration: none; color: #fff;">
+        <h3 style="margin: 0 0 0.5rem 0; font-size: 1rem; color: #10b981;">📜 Execution Stream Logs</h3>
+        <p style="margin: 0; font-size: 0.8rem; color: var(--sinex-text-muted);">Real-time HTTP request trails, payload inspection, and routing events.</p>
+      </a>
+
+      <a href="integrations.html" class="card-sinex-hero" style="padding: 1.25rem; text-decoration: none; color: #fff;">
+        <h3 style="margin: 0 0 0.5rem 0; font-size: 1rem; color: #eab308;">🔌 Webhooks & Integrations</h3>
+        <p style="margin: 0; font-size: 0.8rem; color: var(--sinex-text-muted);">Configure webhook listeners, third-party payment rails, and storage buckets.</p>
+      </a>
+    </div>
+  </main>
+
+</body>
+</html>

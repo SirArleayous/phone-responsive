@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Client Dashboard | SINEX</title>
+  <link rel="stylesheet" href="../assets/css/style.css">
+  <link rel="stylesheet" href="../assets/css/responsive.css">
+</head>
+<body style="background: var(--sinex-bg); color: #ffffff; min-height: 100vh; padding-bottom: 5rem;">
+
+  <header style="background: #111827; border-bottom: 1px solid var(--sinex-border); padding: 1rem; position: sticky; top: 0; z-index: 100;">
+    <div style="max-width: 1200px; margin: 0 auto; display: flex; align-items: center; justify-content: space-between;">
+      <div style="display: flex; align-items: center; gap: 0.75rem;">
+        <h2 style="margin: 0; font-size: 1.25rem; font-weight: 800; color: var(--sinex-teal);">SINEX</h2>
+        <span style="background: rgba(16, 185, 129, 0.15); color: #10b981; padding: 0.2rem 0.5rem; border-radius: 4px; font-size: 0.75rem; font-weight: 700;">CLIENT</span>
+      </div>
+      <div style="display: flex; align-items: center; gap: 1rem;">
+        <a href="notifications.html" style="text-decoration: none; font-size: 1.2rem;">🔔</a>
+        <a href="settings.html" style="text-decoration: none; font-size: 1.2rem;">⚙️</a>
+      </div>
+    </div>
+  </header>
+
+  <main style="max-width: 1200px; margin: 0 auto; padding: 1.25rem 1rem;">
+    
+    <div class="card-sinex-hero" style="margin-bottom: 1.5rem; padding: 1.5rem; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1rem;">
+      <div>
+        <h2 style="margin: 0 0 0.5rem 0;">Client Command Center</h2>
+        <p style="margin: 0; font-size: 0.875rem; color: var(--sinex-text-muted);">Manage campaigns, track real-time task completion, and scale user engagement.</p>
+      </div>
+      <a href="create-campaign.html" class="btn-sinex-primary" style="padding: 0.6rem 1.25rem; text-decoration: none; width: auto;">+ New Campaign</a>
+    </div>
+
+    <!-- Quick Stats -->
+    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 1rem; margin-bottom: 1.5rem;">
+      <div class="card-sinex-hero" style="padding: 1.25rem;">
+        <div style="font-size: 0.8rem; color: var(--sinex-text-muted); margin-bottom: 0.35rem;">Campaign Escrow Balance</div>
+        <div style="font-size: 1.5rem; font-weight: 800; color: #ffffff;">$1,450.00</div>
+        <a href="deposits.html" style="font-size: 0.75rem; color: var(--sinex-teal); text-decoration: none; font-weight: 700; margin-top: 0.5rem; display: inline-block;">+ Deposit Funds →</a>
+      </div>
+
+      <div class="card-sinex-hero" style="padding: 1.25rem;">
+        <div style="font-size: 0.8rem; color: var(--sinex-text-muted); margin-bottom: 0.35rem;">Active Campaigns</div>
+        <div style="font-size: 1.5rem; font-weight: 800; color: #ffffff;">4</div>
+        <a href="campaigns.html" style="font-size: 0.75rem; color: var(--sinex-teal); text-decoration: none; font-weight: 700; margin-top: 0.5rem; display: inline-block;">Manage Campaigns →</a>
+      </div>
+
+      <div class="card-sinex-hero" style="padding: 1.25rem;">
+        <div style="font-size: 0.8rem; color: var(--sinex-text-muted); margin-bottom: 0.35rem;">Pending Task Approvals</div>
+        <div style="font-size: 1.5rem; font-weight: 800; color: #eab308;">18</div>
+        <a href="tasks.html" style="font-size: 0.75rem; color: var(--sinex-teal); text-decoration: none; font-weight: 700; margin-top: 0.5rem; display: inline-block;">Review Submissions →</a>
+      </div>
+    </div>
+
+    <!-- Active Campaigns Overview -->
+    <div style="margin-bottom: 1.5rem;">
+      <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem;">
+        <h3 style="margin: 0; font-size: 1.1rem; font-weight: 700;">Active Campaign Performance</h3>
+        <a href="campaigns.html" style="color: var(--sinex-teal); font-size: 0.85rem; text-decoration: none; font-weight: 700;">View All</a>
+      </div>
+
+      <div style="display: grid; gap: 0.75rem;">
+        <div class="card-sinex-hero" style="padding: 1rem; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 0.5rem;">
+          <div>
+            <div style="font-weight: 700; font-size: 0.95rem;">Fintech Mobile App Testing</div>
+            <div style="font-size: 0.75rem; color: var(--sinex-text-muted);">Progress: 142 / 200 Submissions (71%)</div>
+          </div>
+          <div style="text-align: right; display: flex; align-items: center; gap: 1rem;">
+            <span style="background: rgba(16, 185, 129, 0.15); color: #10b981; padding: 0.2rem 0.5rem; border-radius: 4px; font-size: 0.75rem; font-weight: 700;">RUNNING</span>
+            <a href="campaign-details.html" class="btn-sinex-primary" style="padding: 0.4rem 0.8rem; font-size: 0.8rem; text-decoration: none;">Manage</a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </main>
+
+  <nav style="position: fixed; bottom: 0; left: 0; right: 0; background: #111827; border-top: 1px solid var(--sinex-border); padding: 0.75rem 0; display: flex; justify-content: space-around; z-index: 100;">
+    <a href="dashboard.html" style="color: var(--sinex-teal); text-decoration: none; text-align: center; font-size: 0.75rem; font-weight: 700;">📊<br>Overview</a>
+    <a href="campaigns.html" style="color: var(--sinex-text-muted); text-decoration: none; text-align: center; font-size: 0.75rem;">🎯<br>Campaigns</a>
+    <a href="tasks.html" style="color: var(--sinex-text-muted); text-decoration: none; text-align: center; font-size: 0.75rem;">✅<br>Approvals</a>
+    <a href="wallet.html" style="color: var(--sinex-text-muted); text-decoration: none; text-align: center; font-size: 0.75rem;">💳<br>Wallet</a>
+  </nav>
+
+</body>
+</html>

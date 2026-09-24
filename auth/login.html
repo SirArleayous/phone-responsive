@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Log In | SINEX</title>
+  <link rel="stylesheet" href="../assets/css/style.css">
+  <link rel="stylesheet" href="../assets/css/responsive.css">
+</head>
+<body style="background: var(--sinex-bg); display: flex; align-items: center; justify-content: center; min-height: 100vh; padding: 1rem 0 5rem;">
+
+  <div style="width: 100%; max-width: 420px; padding: 0 1rem;">
+    
+    <!-- Top Branding Banner -->
+    <div class="card-sinex-hero" style="text-align: center; margin-bottom: 1rem;">
+      <h2 style="margin: 0 0 0.35rem 0; font-weight: 800; color: #ffffff;">Welcome Back</h2>
+      <p style="margin: 0; font-size: 0.825rem; color: var(--sinex-text-muted);">Log in to track your activities and cash out earnings.</p>
+    </div>
+
+    <!-- Login Form Card -->
+    <div class="card-sinex-hero" style="padding: 1.25rem;">
+      <h3 style="margin: 0 0 1.25rem 0; font-size: 1rem; font-weight: 700; color: #ffffff; display: flex; align-items: center; gap: 0.5rem;">
+        🔐 Secure Login
+      </h3>
+
+      <form action="../user/dashboard.html">
+        
+        <div style="margin-bottom: 1rem;">
+          <label style="display: block; font-size: 0.8rem; font-weight: 600; margin-bottom: 0.35rem; color: #ffffff;">Username or Email</label>
+          <div style="position: relative;">
+            <span style="position: absolute; left: 1rem; top: 50%; transform: translateY(-50%); font-size: 0.9rem;">✉️</span>
+            <input type="text" class="sinex-input" placeholder="Enter username or email" required>
+          </div>
+        </div>
+
+        <div style="margin-bottom: 1rem;">
+          <label style="display: block; font-size: 0.8rem; font-weight: 600; margin-bottom: 0.35rem; color: #ffffff;">Password</label>
+          <div style="position: relative;">
+            <span style="position: absolute; left: 1rem; top: 50%; transform: translateY(-50%); font-size: 0.9rem;">🔒</span>
+            <input type="password" class="sinex-input" placeholder="Enter password" required>
+          </div>
+        </div>
+
+        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1.25rem; font-size: 0.8rem;">
+          <label style="display: flex; align-items: center; gap: 0.4rem; color: var(--sinex-text-muted); cursor: pointer;">
+            <input type="checkbox"> Remember me
+          </label>
+          <a href="#" style="color: var(--sinex-teal); text-decoration: none; font-weight: 600;">Forgot Password?</a>
+        </div>
+
+        <button type="submit" class="btn-sinex-primary">Log In →</button>
+      </form>
+
+      <div style="text-align: center; margin-top: 1.25rem; font-size: 0.825rem; color: var(--sinex-text-muted);">
+        Don't have an account? <a href="register.html" style="color: var(--sinex-teal); text-decoration: none; font-weight: 700;">Sign Up Instead</a>
+      </div>
+    </div>
+
+  </div>
+
+</body>
+</html>

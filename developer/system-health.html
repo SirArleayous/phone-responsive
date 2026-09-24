@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>System Health Telemetry | SINEX Developer</title>
+  <link rel="stylesheet" href="../assets/css/style.css">
+  <link rel="stylesheet" href="../assets/css/responsive.css">
+</head>
+<body style="background: var(--sinex-bg); color: #ffffff; min-height: 100vh; padding-bottom: 5rem;">
+
+  <div style="max-width: 1000px; margin: 0 auto; padding: 1.25rem 1rem;">
+    <a href="dashboard.html" style="color: var(--sinex-teal); text-decoration: none; font-size: 0.85rem; font-weight: 700; display: inline-block; margin-bottom: 1rem;">← Back to Console</a>
+
+    <h2 style="margin: 0 0 1.25rem 0; font-size: 1.25rem; font-weight: 800;">Infrastructure Node Health</h2>
+
+    <div style="display: flex; flex-direction: column; gap: 1rem;">
+      <div class="card-sinex-hero" style="padding: 1.25rem; display: flex; justify-content: space-between; align-items: center;">
+        <div>
+          <div style="font-weight: 700;">Firestore Database Instance Cluster</div>
+          <div style="font-size: 0.75rem; color: var(--sinex-text-muted);">Latency: 12ms • Active Connections: 1,420</div>
+        </div>
+        <span style="background: rgba(16, 185, 129, 0.15); color: #10b981; padding: 0.2rem 0.5rem; border-radius: 4px; font-size: 0.75rem; font-weight: 700;">HEALTHY</span>
+      </div>
+
+      <div class="card-sinex-hero" style="padding: 1.25rem; display: flex; justify-content: space-between; align-items: center;">
+        <div>
+          <div style="font-weight: 700;">Authentication & Identity Server</div>
+          <div style="font-size: 0.75rem; color: var(--sinex-text-muted);">Latency: 18ms • Token Validations: 340/sec</div>
+        </div>
+        <span style="background: rgba(16, 185, 129, 0.15); color: #10b981; padding: 0.2rem 0.5rem; border-radius: 4px; font-size: 0.75rem; font-weight: 700;">HEALTHY</span>
+      </div>
+
+      <div class="card-sinex-hero" style="padding: 1.25rem; display: flex; justify-content: space-between; align-items: center;">
+        <div>
+          <div style="font-weight: 700;">Storage Node Bucket (Proofs & Assets)</div>
+          <div style="font-size: 0.75rem; color: var(--sinex-text-muted);">Latency: 65ms • Bandwidth Usage: 84 MB/sec</div>
+        </div>
+        <span style="background: rgba(16, 185, 129, 0.15); color: #10b981; padding: 0.2rem 0.5rem; border-radius: 4px; font-size: 0.75rem; font-weight: 700;">HEALTHY</span>
+      </div>
+    </div>
+  </div>
+
+</body>
+</html>

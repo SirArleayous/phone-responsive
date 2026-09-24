@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Create Account | SINEX</title>
+  <link rel="stylesheet" href="../assets/css/style.css">
+  <link rel="stylesheet" href="../assets/css/responsive.css">
+</head>
+<body style="background: var(--sinex-bg); display: flex; align-items: center; justify-content: center; min-height: 100vh; padding: 2rem 0 5rem;">
+
+  <div style="width: 100%; max-width: 440px; padding: 0 1rem;">
+    
+    <!-- Header Banner -->
+    <div class="card-sinex-hero" style="text-align: center; margin-bottom: 1rem;">
+      <h2 style="margin: 0 0 0.35rem 0; font-weight: 800; color: #ffffff;">Create SINEX Account</h2>
+      <p style="margin: 0; font-size: 0.825rem; color: var(--sinex-text-muted);">Choose your account type and fill in your details to get started.</p>
+    </div>
+
+    <!-- Registration Card -->
+    <div class="card-sinex-hero" style="padding: 1.25rem;">
+      <form id="signupForm" action="verify-account.html" onsubmit="saveUserRole(event)">
+        
+        <!-- Account Type Selection -->
+        <div style="margin-bottom: 1.25rem;">
+          <label style="display: block; font-size: 0.8rem; font-weight: 600; margin-bottom: 0.5rem; color: #ffffff;">Account Type</label>
+
+          <div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 0.5rem;">
+            <!-- User Option -->
+            <label style="border: 1px solid var(--sinex-border); background: #0f172a; padding: 0.65rem; border-radius: var(--border-radius-md); cursor: pointer; display: flex; align-items: flex-start; gap: 0.5rem;">
+              <input type="radio" name="account_role" value="user" checked style="accent-color: var(--sinex-teal); margin-top: 0.15rem;">
+              <div>
+                <div style="font-size: 0.8rem; font-weight: 700; color: #ffffff;">User</div>
+                <div style="font-size: 0.68rem; color: var(--sinex-text-muted);">Personal account</div>
+              </div>
+            </label>
+
+            <!-- Client Option -->
+            <label style="border: 1px solid var(--sinex-border); background: #0f172a; padding: 0.65rem; border-radius: var(--border-radius-md); cursor: pointer; display: flex; align-items: flex-start; gap: 0.5rem;">
+              <input type="radio" name="account_role" value="client" style="accent-color: var(--sinex-teal); margin-top: 0.15rem;">
+              <div>
+                <div style="font-size: 0.8rem; font-weight: 700; color: #ffffff;">Client</div>
+                <div style="font-size: 0.68rem; color: var(--sinex-text-muted);">Business & projects</div>
+              </div>
+            </label>
+
+            <!-- Developer Option -->
+            <label style="border: 1px solid var(--sinex-border); background: #0f172a; padding: 0.65rem; border-radius: var(--border-radius-md); cursor: pointer; display: flex; align-items: flex-start; gap: 0.5rem;">
+              <input type="radio" name="account_role" value="developer" style="accent-color: var(--sinex-teal); margin-top: 0.15rem;">
+              <div>
+                <div style="font-size: 0.8rem; font-weight: 700; color: #ffffff;">Developer</div>
+                <div style="font-size: 0.68rem; color: var(--sinex-text-muted);">APIs & integrations</div>
+              </div>
+            </label>
+
+            <!-- Investor Option -->
+            <label style="border: 1px solid var(--sinex-border); background: #0f172a; padding: 0.65rem; border-radius: var(--border-radius-md); cursor: pointer; display: flex; align-items: flex-start; gap: 0.5rem;">
+              <input type="radio" name="account_role" value="investor" style="accent-color: var(--sinex-teal); margin-top: 0.15rem;">
+              <div>
+                <div style="font-size: 0.8rem; font-weight: 700; color: #ffffff;">Investor</div>
+                <div style="font-size: 0.68rem; color: var(--sinex-text-muted);">Funding & growth</div>
+              </div>
+            </label>
+          </div>
+        </div>
+
+        <!-- Full Name -->
+        <div style="margin-bottom: 1rem;">
+          <label style="display: block; font-size: 0.8rem; font-weight: 600; margin-bottom: 0.35rem; color: #ffffff;">Full Name</label>
+          <div style="position: relative;">
+            <span style="position: absolute; left: 1rem; top: 50%; transform: translateY(-50%); font-size: 0.9rem;">👤</span>
+            <input type="text" class="sinex-input" placeholder="John Doe" required>
+          </div>
+        </div>
+
+        <!-- Email Address -->
+        <div style="margin-bottom: 1rem;">
+          <label style="display: block; font-size: 0.8rem; font-weight: 600; margin-bottom: 0.35rem; color: #ffffff;">Email Address</label>
+          <div style="position: relative;">
+            <span style="position: absolute; left: 1rem; top: 50%; transform: translateY(-50%); font-size: 0.9rem;">✉️</span>
+            <input type="email" class="sinex-input" placeholder="name@example.com" required>
+          </div>
+        </div>
+
+        <!-- Password -->
+        <div style="margin-bottom: 1.25rem;">
+          <label style="display: block; font-size: 0.8rem; font-weight: 600; margin-bottom: 0.35rem; color: #ffffff;">Password</label>
+          <div style="position: relative;">
+            <span style="position: absolute; left: 1rem; top: 50%; transform: translateY(-50%); font-size: 0.9rem;">🔒</span>
+            <input type="password" class="sinex-input" placeholder="Create strong password" required>
+          </div>
+        </div>
+
+        <button type="submit" class="btn-sinex-primary">Continue to Verification →</button>
+      </form>
+
+      <div style="text-align: center; margin-top: 1.25rem; font-size: 0.825rem; color: var(--sinex-text-muted);">
+        Already have an account? <a href="login.html" style="color: var(--sinex-teal); text-decoration: none; font-weight: 700;">Log In</a>
+      </div>
+    </div>
+
+  </div>
+
+  <script>
+    function saveUserRole(e) {
+      const selectedRole = document.querySelector('input[name="account_role"]:checked').value;
+      localStorage.setItem('sinex_user_role', selectedRole);
+    }
+  </script>
+
+</body>
+</html>

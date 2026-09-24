@@ -1,0 +1,76 @@
+/* ==========================================================================
+   SINEX Dark Tech UI Engine - Responsive & Mobile Layouts
+   ========================================================================== */
+
+@media (max-width: 1024px) {
+  .dashboard-layout {
+    flex-direction: column;
+  }
+
+  .sidebar {
+    width: 100%;
+    border-right: none;
+    border-bottom: 1px solid var(--sinex-card-border);
+    padding: 1rem;
+  }
+
+  .nav-list {
+    flex-direction: row;
+    overflow-x: auto;
+    padding-bottom: 0.5rem;
+  }
+
+  .nav-link {
+    white-space: nowrap;
+  }
+
+  .dashboard-main {
+    padding: 1.25rem 1rem;
+  }
+}
+
+@media (max-width: 640px) {
+  .metric-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .auth-card {
+    padding: 1.5rem 1.25rem;
+  }
+
+  .btn-sinex-primary {
+    padding: 0.65rem 1rem;
+  }
+}
+/* Fixed Bottom Navigation Bar */
+.bottom-nav {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 60px;
+  background-color: #111827; /* Matches --sinex-card */
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  z-index: 1000;
+  padding: 0 1rem;
+}
+
+/* Styled Navigation Item Links */
+.bottom-nav a {
+  color: #9ca3af; /* Muted text */
+  text-decoration: none;
+  font-size: 0.85rem;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  gap: 0.35rem;
+  transition: color 0.2s ease;
+}
+
+.bottom-nav a:hover,
+.bottom-nav a.active {
+  color: #00d2ff; /* --sinex-teal highlight */
+}

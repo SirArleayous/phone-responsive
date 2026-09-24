@@ -1,0 +1,131 @@
+/* ==========================================================================
+   SINEX Dark Tech UI Engine - Core Stylesheet
+   ========================================================================== */
+
+:root {
+  --sinex-bg: #0a0f1d;
+  --sinex-card: #111827;
+  --sinex-card-border: #1f2937;
+  --sinex-border: rgba(255, 255, 255, 0.1);
+  --sinex-teal: #00d2ff;
+  --sinex-teal-glow: rgba(0, 210, 255, 0.25);
+  --sinex-purple: #7928ca;
+  --sinex-text: #ffffff;
+  --sinex-text-muted: #9ca3af;
+  --sinex-success: #10b981;
+  --sinex-warning: #eab308;
+  --sinex-danger: #ef4444;
+  --font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  background-color: var(--sinex-bg);
+  color: var(--sinex-text);
+  font-family: var(--font-family);
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Glassmorphic / Dark Card Component */
+.card-sinex-hero {
+  background: var(--sinex-card);
+  border: 1px solid var(--sinex-card-border);
+  border-radius: 12px;
+  box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  transition: transform 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.card-sinex-hero:hover {
+  border-color: rgba(0, 210, 255, 0.4);
+  box-shadow: 0 8px 32px 0 var(--sinex-teal-glow);
+}
+
+/* Inputs & Form Controls */
+.sinex-input {
+  width: 100%;
+  padding: 0.75rem 1rem;
+  background: #0d1322;
+  border: 1px solid var(--sinex-card-border);
+  border-radius: 8px;
+  color: #ffffff;
+  font-size: 0.9rem;
+  outline: none;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.sinex-input:focus {
+  border-color: var(--sinex-teal);
+  box-shadow: 0 0 0 2px var(--sinex-teal-glow);
+}
+
+.sinex-input::placeholder {
+  color: var(--sinex-text-muted);
+}
+
+/* Primary Action Buttons */
+.btn-sinex-primary {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  padding: 0.75rem 1.5rem;
+  background: linear-gradient(135deg, var(--sinex-teal) 0%, #0080ff 100%);
+  color: #000000;
+  font-weight: 700;
+  font-size: 0.9rem;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  text-decoration: none;
+  transition: opacity 0.2s ease, transform 0.1s ease, box-shadow 0.2s ease;
+}
+
+.btn-sinex-primary:hover {
+  opacity: 0.92;
+  box-shadow: 0 0 16px var(--sinex-teal-glow);
+}
+
+.btn-sinex-primary:active {
+  transform: scale(0.98);
+}
+/* Fixed Bottom Navigation Bar */
+.bottom-nav {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 60px;
+  background-color: #111827; /* Matches --sinex-card */
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  z-index: 1000;
+  padding: 0 1rem;
+}
+
+/* Styled Navigation Item Links */
+.bottom-nav a {
+  color: #9ca3af; /* Muted text */
+  text-decoration: none;
+  font-size: 0.85rem;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  gap: 0.35rem;
+  transition: color 0.2s ease;
+}
+
+.bottom-nav a:hover,
+.bottom-nav a.active {
+  color: #00d2ff; /* --sinex-teal highlight */
+}

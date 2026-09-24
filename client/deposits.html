@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Deposit Funds | SINEX Client</title>
+  <link rel="stylesheet" href="../assets/css/style.css">
+  <link rel="stylesheet" href="../assets/css/responsive.css">
+</head>
+<body style="background: var(--sinex-bg); color: #ffffff; min-height: 100vh; padding-bottom: 5rem;">
+
+  <div style="max-width: 600px; margin: 0 auto; padding: 1.25rem 1rem;">
+    <a href="wallet.html" style="color: var(--sinex-teal); text-decoration: none; font-size: 0.85rem; font-weight: 700; display: inline-block; margin-bottom: 1rem;">← Back to Wallet</a>
+
+    <div class="card-sinex-hero" style="padding: 1.5rem;">
+      <h2 style="margin: 0 0 1rem 0; font-size: 1.25rem;">Fund Escrow Account</h2>
+
+      <form action="wallet.html">
+        <div style="margin-bottom: 1rem;">
+          <label style="display: block; font-size: 0.8rem; font-weight: 600; margin-bottom: 0.35rem;">Payment Gateway</label>
+          <select class="sinex-input" required>
+            <option value="card">Credit / Debit Card (Stripe)</option>
+            <option value="crypto">USDT / Crypto Payment</option>
+            <option value="wire">Corporate Wire Transfer</option>
+          </select>
+        </div>
+
+        <div style="margin-bottom: 1.25rem;">
+          <label style="display: block; font-size: 0.8rem; font-weight: 600; margin-bottom: 0.35rem;">Amount to Add ($)</label>
+          <input type="number" min="50" class="sinex-input" placeholder="e.g. 500.00" required>
+        </div>
+
+        <button type="submit" class="btn-sinex-primary">Proceed to Secure Payment →</button>
+      </form>
+    </div>
+  </div>
+
+</body>
+</html>

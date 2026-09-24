@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>API Management & Keys | SINEX Developer</title>
+  <link rel="stylesheet" href="../assets/css/style.css">
+  <link rel="stylesheet" href="../assets/css/responsive.css">
+</head>
+<body style="background: var(--sinex-bg); color: #ffffff; min-height: 100vh; padding-bottom: 5rem;">
+
+  <div style="max-width: 900px; margin: 0 auto; padding: 1.25rem 1rem;">
+    <a href="dashboard.html" style="color: var(--sinex-teal); text-decoration: none; font-size: 0.85rem; font-weight: 700; display: inline-block; margin-bottom: 1rem;">← Back to Console</a>
+
+    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1.25rem;">
+      <h2 style="margin: 0; font-size: 1.25rem; font-weight: 800;">API Access Credentials</h2>
+      <button class="btn-sinex-primary" style="width: auto; padding: 0.4rem 1rem;" onclick="alert('New API Key Generated!');">Generate Secret Key</button>
+    </div>
+
+    <div class="card-sinex-hero" style="padding: 1.5rem; margin-bottom: 1rem;">
+      <div style="font-weight: 700; margin-bottom: 0.25rem;">Production Secret Key</div>
+      <div style="font-family: monospace; font-size: 0.85rem; background: #0a0f1d; padding: 0.5rem; border-radius: 4px; border: 1px solid var(--sinex-border); color: var(--sinex-teal); margin-bottom: 0.75rem;">
+        snx_live_99f28a301c8942e5b72e011409ab12
+      </div>
+      <div style="font-size: 0.75rem; color: var(--sinex-text-muted);">Permissions: Full Read/Write • Created: Jan 10, 2026</div>
+    </div>
+
+    <div class="card-sinex-hero" style="padding: 1.5rem;">
+      <div style="font-weight: 700; margin-bottom: 0.25rem;">Development Sandbox Key</div>
+      <div style="font-family: monospace; font-size: 0.85rem; background: #0a0f1d; padding: 0.5rem; border-radius: 4px; border: 1px solid var(--sinex-border); color: #eab308; margin-bottom: 0.75rem;">
+        snx_test_44e120bc918a41df9012a93817cc91
+      </div>
+      <div style="font-size: 0.75rem; color: var(--sinex-text-muted);">Permissions: Test Mode Sandbox • Created: Feb 01, 2026</div>
+    </div>
+  </div>
+
+</body>
+</html>
