@@ -23,13 +23,13 @@
         🔐 Secure Login
       </h3>
 
-      <form action="../user/dashboard.html">
+      <form id="loginForm">
         
         <div style="margin-bottom: 1rem;">
           <label style="display: block; font-size: 0.8rem; font-weight: 600; margin-bottom: 0.35rem; color: #ffffff;">Username or Email</label>
           <div style="position: relative;">
             <span style="position: absolute; left: 1rem; top: 50%; transform: translateY(-50%); font-size: 0.9rem;">✉️</span>
-            <input type="text" class="sinex-input" placeholder="Enter username or email" required>
+            <input type="text" id="loginIdentifier" class="sinex-input" placeholder="Enter username or email" required>
           </div>
         </div>
 
@@ -37,18 +37,18 @@
           <label style="display: block; font-size: 0.8rem; font-weight: 600; margin-bottom: 0.35rem; color: #ffffff;">Password</label>
           <div style="position: relative;">
             <span style="position: absolute; left: 1rem; top: 50%; transform: translateY(-50%); font-size: 0.9rem;">🔒</span>
-            <input type="password" class="sinex-input" placeholder="Enter password" required>
+            <input type="password" id="loginPassword" class="sinex-input" placeholder="Enter password" required>
           </div>
         </div>
 
         <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1.25rem; font-size: 0.8rem;">
           <label style="display: flex; align-items: center; gap: 0.4rem; color: var(--sinex-text-muted); cursor: pointer;">
-            <input type="checkbox"> Remember me
+            <input type="checkbox" id="rememberMe"> Remember me
           </label>
           <a href="#" style="color: var(--sinex-teal); text-decoration: none; font-weight: 600;">Forgot Password?</a>
         </div>
 
-        <button type="submit" class="btn-sinex-primary">Log In →</button>
+        <button type="submit" id="loginBtn" class="btn-sinex-primary">Log In →</button>
       </form>
 
       <div style="text-align: center; margin-top: 1.25rem; font-size: 0.825rem; color: var(--sinex-text-muted);">
@@ -58,5 +58,62 @@
 
   </div>
 
+  <script src="../assets/css/js/api.js"></script>
+  <script>
+    document.getElementById('loginForm').addEventListener('submit', async function(e) {
+      e.preventDefault();
+
+      const submitBtn = document.getElementById('loginBtn');
+      const identifier = document.getElementById('loginIdentifier').value.trim();
+      const password = document.getElementById('loginPassword').value;
+
+      submitBtn.disabled = true;
+      submitBtn.innerText = 'Logging in...';
+
+      const response = await apiRequest('/auth/login', 'POST', {
+        email: identifier,
+        password: password
+      });
+
+      submitBtn.disabled = false;
+      submitBtn.innerText = 'Log In →';
+
+      if (response && response.success) {
+        // Save access token
+        if (response.data && response.data.accessToken) {
+          localStorage.setItem('token', response.data.accessToken);
+        }
+
+        // Get user role from backend response or local storage fallback
+        const userObj = response.data.user || response.data;
+        const rawRole = userObj.role || localStorage.getItem('sinex_user_role') || 'USER';
+        const role = String(rawRole).toLowerCase();
+
+        // Save active role locally for UI states
+        localStorage.setItem('sinex_user_role', role);
+
+        // Route dynamically to the respective role dashboard folder
+        switch (role) {
+          case 'admin':
+            window.location.href = '../admin/dashboard.html';
+            break;
+          case 'client':
+            window.location.href = '../client/dashboard.html';
+            break;
+          case 'developer':
+            window.location.href = '../developer/dashboard.html';
+            break;
+          case 'investor':
+            window.location.href = '../investor/dashboard.html';
+            break;
+          default:
+            window.location.href = '../user/dashboard.html';
+            break;
+        }
+      } else {
+        alert(response.message || 'Invalid credentials. Please try again.');
+      }
+    });
+  </script>
 </body>
 </html>

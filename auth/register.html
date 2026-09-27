@@ -19,7 +19,7 @@
 
     <!-- Registration Card -->
     <div class="card-sinex-hero" style="padding: 1.25rem;">
-      <form id="signupForm" action="verify-account.html" onsubmit="saveUserRole(event)">
+      <form id="signupForm">
         
         <!-- Account Type Selection -->
         <div style="margin-bottom: 1.25rem;">
@@ -28,7 +28,7 @@
           <div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 0.5rem;">
             <!-- User Option -->
             <label style="border: 1px solid var(--sinex-border); background: #0f172a; padding: 0.65rem; border-radius: var(--border-radius-md); cursor: pointer; display: flex; align-items: flex-start; gap: 0.5rem;">
-              <input type="radio" name="account_role" value="user" checked style="accent-color: var(--sinex-teal); margin-top: 0.15rem;">
+              <input type="radio" name="account_role" value="USER" checked style="accent-color: var(--sinex-teal); margin-top: 0.15rem;">
               <div>
                 <div style="font-size: 0.8rem; font-weight: 700; color: #ffffff;">User</div>
                 <div style="font-size: 0.68rem; color: var(--sinex-text-muted);">Personal account</div>
@@ -37,7 +37,7 @@
 
             <!-- Client Option -->
             <label style="border: 1px solid var(--sinex-border); background: #0f172a; padding: 0.65rem; border-radius: var(--border-radius-md); cursor: pointer; display: flex; align-items: flex-start; gap: 0.5rem;">
-              <input type="radio" name="account_role" value="client" style="accent-color: var(--sinex-teal); margin-top: 0.15rem;">
+              <input type="radio" name="account_role" value="CLIENT" style="accent-color: var(--sinex-teal); margin-top: 0.15rem;">
               <div>
                 <div style="font-size: 0.8rem; font-weight: 700; color: #ffffff;">Client</div>
                 <div style="font-size: 0.68rem; color: var(--sinex-text-muted);">Business & projects</div>
@@ -46,7 +46,7 @@
 
             <!-- Developer Option -->
             <label style="border: 1px solid var(--sinex-border); background: #0f172a; padding: 0.65rem; border-radius: var(--border-radius-md); cursor: pointer; display: flex; align-items: flex-start; gap: 0.5rem;">
-              <input type="radio" name="account_role" value="developer" style="accent-color: var(--sinex-teal); margin-top: 0.15rem;">
+              <input type="radio" name="account_role" value="DEVELOPER" style="accent-color: var(--sinex-teal); margin-top: 0.15rem;">
               <div>
                 <div style="font-size: 0.8rem; font-weight: 700; color: #ffffff;">Developer</div>
                 <div style="font-size: 0.68rem; color: var(--sinex-text-muted);">APIs & integrations</div>
@@ -55,7 +55,7 @@
 
             <!-- Investor Option -->
             <label style="border: 1px solid var(--sinex-border); background: #0f172a; padding: 0.65rem; border-radius: var(--border-radius-md); cursor: pointer; display: flex; align-items: flex-start; gap: 0.5rem;">
-              <input type="radio" name="account_role" value="investor" style="accent-color: var(--sinex-teal); margin-top: 0.15rem;">
+              <input type="radio" name="account_role" value="INVESTOR" style="accent-color: var(--sinex-teal); margin-top: 0.15rem;">
               <div>
                 <div style="font-size: 0.8rem; font-weight: 700; color: #ffffff;">Investor</div>
                 <div style="font-size: 0.68rem; color: var(--sinex-text-muted);">Funding & growth</div>
@@ -69,7 +69,7 @@
           <label style="display: block; font-size: 0.8rem; font-weight: 600; margin-bottom: 0.35rem; color: #ffffff;">Full Name</label>
           <div style="position: relative;">
             <span style="position: absolute; left: 1rem; top: 50%; transform: translateY(-50%); font-size: 0.9rem;">👤</span>
-            <input type="text" class="sinex-input" placeholder="John Doe" required>
+            <input type="text" id="registerFullName" class="sinex-input" placeholder="John Doe" required>
           </div>
         </div>
 
@@ -78,7 +78,7 @@
           <label style="display: block; font-size: 0.8rem; font-weight: 600; margin-bottom: 0.35rem; color: #ffffff;">Email Address</label>
           <div style="position: relative;">
             <span style="position: absolute; left: 1rem; top: 50%; transform: translateY(-50%); font-size: 0.9rem;">✉️</span>
-            <input type="email" class="sinex-input" placeholder="name@example.com" required>
+            <input type="email" id="registerEmail" class="sinex-input" placeholder="name@example.com" required>
           </div>
         </div>
 
@@ -87,11 +87,11 @@
           <label style="display: block; font-size: 0.8rem; font-weight: 600; margin-bottom: 0.35rem; color: #ffffff;">Password</label>
           <div style="position: relative;">
             <span style="position: absolute; left: 1rem; top: 50%; transform: translateY(-50%); font-size: 0.9rem;">🔒</span>
-            <input type="password" class="sinex-input" placeholder="Create strong password" required>
+            <input type="password" id="registerPassword" class="sinex-input" placeholder="Create strong password" required minlength="6">
           </div>
         </div>
 
-        <button type="submit" class="btn-sinex-primary">Continue to Verification →</button>
+        <button type="submit" id="registerBtn" class="btn-sinex-primary">Continue to Verification →</button>
       </form>
 
       <div style="text-align: center; margin-top: 1.25rem; font-size: 0.825rem; color: var(--sinex-text-muted);">
@@ -101,12 +101,69 @@
 
   </div>
 
+  <script src="../assets/css/js/api.js"></script>
   <script>
-    function saveUserRole(e) {
-      const selectedRole = document.querySelector('input[name="account_role"]:checked').value;
-      localStorage.setItem('sinex_user_role', selectedRole);
-    }
-  </script>
+    let activeCountryId = null;
 
+    // Fetch a valid MongoDB Country ObjectId on page load
+    async function loadCountry() {
+      try {
+        const response = await apiRequest('/countries', 'GET');
+        if (response && response.success && Array.isArray(response.data) && response.data.length > 0) {
+          activeCountryId = response.data[0]._id || response.data[0].id;
+        }
+      } catch (err) {
+        console.error('Could not fetch countries:', err);
+      }
+    }
+
+    document.addEventListener('DOMContentLoaded', loadCountry);
+
+    document.getElementById('signupForm').addEventListener('submit', async function(e) {
+      e.preventDefault();
+
+      const submitBtn = document.getElementById('registerBtn');
+      const selectedRole = document.querySelector('input[name="account_role"]:checked').value;
+      const fullName = document.getElementById('registerFullName').value.trim();
+      const email = document.getElementById('registerEmail').value.trim();
+      const password = document.getElementById('registerPassword').value;
+
+      // Save role locally in lowercase for frontend routing
+      localStorage.setItem('sinex_user_role', selectedRole.toLowerCase());
+
+      // Try fetching country ID if not yet available
+      if (!activeCountryId) {
+        await loadCountry();
+      }
+
+      submitBtn.disabled = true;
+      submitBtn.innerText = 'Creating Account...';
+
+      const payload = {
+        fullName: fullName,
+        email: email,
+        password: password,
+        role: selectedRole.toUpperCase()
+      };
+
+      if (activeCountryId) {
+        payload.countryId = activeCountryId;
+      }
+
+      const response = await apiRequest('/auth/register', 'POST', payload);
+
+      submitBtn.disabled = false;
+      submitBtn.innerText = 'Continue to Verification →';
+
+      if (response && response.success) {
+        if (response.data && response.data.accessToken) {
+          localStorage.setItem('token', response.data.accessToken);
+        }
+        window.location.href = 'verify-account.html';
+      } else {
+        alert(response.message || 'Registration failed. Please check your inputs and try again.');
+      }
+    });
+  </script>
 </body>
 </html>
