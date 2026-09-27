@@ -3,43 +3,84 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>User Directory | SINEX Admin</title>
+  <title>User Registry | SINEX Admin</title>
   <link rel="stylesheet" href="../assets/css/style.css">
   <link rel="stylesheet" href="../assets/css/responsive.css">
+  <style>
+    body { background: #080c14; color: #ffffff; font-family: system-ui, sans-serif; padding: 1.5rem; }
+    .admin-nav { display: flex; gap: 1rem; border-bottom: 1px solid #1e293b; padding-bottom: 1rem; margin-bottom: 1.5rem; }
+    .admin-nav-item { color: #94a3b8; text-decoration: none; font-weight: 600; padding: 0.5rem 1rem; border-radius: 6px; }
+    .admin-nav-item.active, .admin-nav-item:hover { background: #00d4ff22; color: #00d4ff; }
+    
+    .admin-table { width: 100%; border-collapse: collapse; background: #0f172a; border-radius: 10px; overflow: hidden; margin-top: 1rem; }
+    .admin-table th, .admin-table td { padding: 0.85rem 1rem; text-align: left; border-bottom: 1px solid #1e293b; font-size: 0.85rem; }
+    .admin-table th { background: #1e293b; color: #00d4ff; }
+    
+    .badge-role { padding: 0.2rem 0.5rem; border-radius: 4px; font-size: 0.7rem; font-weight: 700; text-transform: uppercase; }
+    .role-developer { background: #8b5cf622; color: #a78bfa; border: 1px solid #8b5cf6; }
+    .role-investor { background: #10b98122; color: #34d399; border: 1px solid #10b981; }
+    .role-user { background: #3b82f622; color: #60a5fa; border: 1px solid #3b82f6; }
+    .role-client { background: #f59e0b22; color: #fbbf24; border: 1px solid #f59e0b; }
+  </style>
 </head>
-<body style="background: var(--sinex-bg); color: #ffffff; min-height: 100vh; padding-bottom: 5rem;">
+<body>
 
-  <div style="max-width: 1200px; margin: 0 auto; padding: 1.25rem 1rem;">
-    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1.25rem;">
-      <h2 style="margin: 0; font-size: 1.25rem; font-weight: 800;">User Directory</h2>
-      <input type="text" class="sinex-input" placeholder="Search by name, email, or ID..." style="max-width: 300px;">
-    </div>
+  <div style="max-width: 1200px; margin: 0 auto;">
+    
+    <header style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem;">
+      <h2 style="margin: 0; font-weight: 800; color: #ffffff;">⚡ SINEX Admin Control Hub</h2>
+      <button onclick="logoutUser()" class="btn-sinex-primary" style="padding: 0.5rem 1rem; width: auto;">Logout 🚪</button>
+    </header>
 
-    <div class="card-sinex-hero" style="padding: 1rem; overflow-x: auto;">
-      <table style="width: 100%; border-collapse: collapse; text-align: left; font-size: 0.85rem;">
-        <thead>
-          <tr style="border-bottom: 1px solid var(--sinex-border); color: var(--sinex-text-muted);">
-            <th style="padding: 0.75rem;">User ID</th>
-            <th style="padding: 0.75rem;">Name</th>
-            <th style="padding: 0.75rem;">Email</th>
-            <th style="padding: 0.75rem;">Earnings</th>
-            <th style="padding: 0.75rem;">Status</th>
-            <th style="padding: 0.75rem;">Action</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr style="border-bottom: 1px solid var(--sinex-border);">
-            <td style="padding: 0.75rem; font-weight: 700;">#USR-1092</td>
-            <td style="padding: 0.75rem;">Khadija Usman</td>
-            <td style="padding: 0.75rem;">khadija@example.com</td>
-            <td style="padding: 0.75rem; color: #10b981; font-weight: 700;">$340.50</td>
-            <td style="padding: 0.75rem;"><span style="background: rgba(16, 185, 129, 0.15); color: #10b981; padding: 0.2rem 0.5rem; border-radius: 4px; font-weight: 700;">ACTIVE</span></td>
-            <td style="padding: 0.75rem;"><a href="user-details.html" style="color: var(--sinex-teal); text-decoration: none; font-weight: 700;">Inspect →</a></td>
-          </tr>
-        </tbody>
-      </table>
-    </div>
+    <nav class="admin-nav">
+      <a href="dashboard.html" class="admin-nav-item">📊 Overview</a>
+      <a href="users.html" class="admin-nav-item active">👥 User Management</a>
+      <a href="task-proofs.html" class="admin-nav-item">📸 Task Proofs</a>
+    </nav>
+
+    <h3 style="color: #00d4ff;">Registered Users & Credentials Registry</h3>
+
+    <table class="admin-table">
+      <thead>
+        <tr>
+          <th>Full Name</th>
+          <th>Email Address</th>
+          <th>Account Role</th>
+          <th>Country ID</th>
+          <th>Balance ($)</th>
+          <th>Registered Date</th>
+        </tr>
+      </thead>
+      <tbody id="usersTableBody">
+        <tr><td colspan="6" style="text-align: center; color: #94a3b8;">Loading user registry...</td></tr>
+      </tbody>
+    </table>
+
   </div>
 
+  <script src="../assets/css/js/api.js"></script>
+  <script>
+    async function fetchUsers() {
+      const res = await apiRequest('/admin/users', 'GET');
+      if (res && res.success) {
+        const tbody = document.getElementById('usersTableBody');
+        tbody.innerHTML = res.data.map(u => `
+          <tr>
+            <td><strong>${u.fullName || u.name}</strong></td>
+            <td>${u.email}</td>
+            <td><span class="badge-role role-${(u.role || 'user').toLowerCase()}">${u.role}</span></td>
+            <td>${u.countryId || 'N/A'}</td>
+            <td style="color: #10b981; font-weight: 700;">$${(u.balance || 0).toFixed(2)}</td>
+            <td>${new Date(u.createdAt).toLocaleDateString()}</td>
+          </tr>
+        `).join('');
+      }
+    }
+
+    document.addEventListener('DOMContentLoaded', async () => {
+      await requireAuth(['ADMIN']);
+      fetchUsers();
+    });
+  </script>
 </body>
 </html>

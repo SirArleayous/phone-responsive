@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Task Proofs Verification | SINEX Admin</title>
+  <link rel="stylesheet" href="../assets/css/style.css">
+  <link rel="stylesheet" href="../assets/css/responsive.css">
+  <style>
+    body { background: #080c14; color: #ffffff; font-family: system-ui, sans-serif; padding: 1.5rem; }
+    .admin-nav { display: flex; gap: 1rem; border-bottom: 1px solid #1e293b; padding-bottom: 1rem; margin-bottom: 1.5rem; }
+    .admin-nav-item { color: #94a3b8; text-decoration: none; font-weight: 600; padding: 0.5rem 1rem; border-radius: 6px; }
+    .admin-nav-item.active, .admin-nav-item:hover { background: #00d4ff22; color: #00d4ff; }
+    
+    .admin-table { width: 100%; border-collapse: collapse; background: #0f172a; border-radius: 10px; overflow: hidden; margin-top: 1rem; }
+    .admin-table th, .admin-table td { padding: 0.85rem 1rem; text-align: left; border-bottom: 1px solid #1e293b; font-size: 0.85rem; }
+    .admin-table th { background: #1e293b; color: #00d4ff; }
+    
+    .proof-img { width: 55px; height: 55px; object-fit: cover; border-radius: 6px; cursor: pointer; border: 1px solid #00d4ff; }
+  </style>
+</head>
+<body>
+
+  <div style="max-width: 1200px; margin: 0 auto;">
+    
+    <header style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem;">
+      <h2 style="margin: 0; font-weight: 800; color: #ffffff;">⚡ SINEX Admin Control Hub</h2>
+      <button onclick="logoutUser()" class="btn-sinex-primary" style="padding: 0.5rem 1rem; width: auto;">Logout 🚪</button>
+    </header>
+
+    <nav class="admin-nav">
+      <a href="dashboard.html" class="admin-nav-item">📊 Overview</a>
+      <a href="users.html" class="admin-nav-item">👥 User Management</a>
+      <a href="task-proofs.html" class="admin-nav-item active">📸 Task Proofs</a>
+    </nav>
+
+    <h3 style="color: #00d4ff;">Task Screenshot Verification Queue</h3>
+
+    <table class="admin-table">
+      <thead>
+        <tr>
+          <th>User</th>
+          <th>Task Name</th>
+          <th>Screenshot Proof</th>
+          <th>Reward</th>
+          <th>Status</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+      <tbody id="taskProofsBody">
+        <tr><td colspan="6" style="text-align: center; color: #94a3b8;">Loading task submissions...</td></tr>
+      </tbody>
+    </table>
+
+  </div>
+
+  <script src="../assets/css/js/api.js"></script>
+  <script>
+    async function fetchTaskProofs() {
+      const res = await apiRequest('/admin/task-proofs', 'GET');
+      if (res && res.success) {
+        const tbody = document.getElementById('taskProofsBody');
+        if (res.data.length === 0) {
+          tbody.innerHTML = '<tr><td colspan="6" style="text-align: center; color: #94a3b8;">No task submissions found.</td></tr>';
+          return;
+        }
+
+        tbody.innerHTML = res.data.map(t => `
+          <tr>
+            <td><strong>${t.userId?.fullName || 'User'}</strong><br><small style="color:#94a3b8;">${t.userId?.email || ''}</small></td>
+            <td>${t.taskName}</td>
+            <td>
+              <a href="${t.screenshotUrl}" target="_blank">
+                <img src="${t.screenshotUrl}" class="proof-img" alt="Proof" title="Click to view full size" />
+              </a>
+            </td>
+            <td style="color: #10b981; font-weight: 700;">+$${t.rewardAmount}</td>
+            <td><strong style="color: ${t.status === 'APPROVED' ? '#10b981' : t.status === 'REJECTED' ? '#ef4444' : '#fbbf24'}">${t.status}</strong></td>
+            <td>
+              ${t.status === 'PENDING' ? `
+                <button onclick="reviewProof('${t._id}', 'APPROVE')" style="background: #10b981; color:#fff; border:none; padding:0.35rem 0.65rem; border-radius:4px; cursor:pointer;">Approve</button>
+                <button onclick="reviewProof('${t._id}', 'REJECT')" style="background: #ef4444; color:#fff; border:none; padding:0.35rem 0.65rem; border-radius:4px; cursor:pointer;">Reject</button>
+              ` : 'Reviewed'}
+            </td>
+          </tr>
+        `).join('');
+      }
+    }
+
+    async function reviewProof(submissionId, action) {
+      const res = await apiRequest('/admin/review-task', 'POST', { submissionId, action });
+      if (res && res.success) {
+        alert(`Proof ${action}d successfully!`);
+        fetchTaskProofs();
+      }
+    }
+
+    document.addEventListener('DOMContentLoaded', async () => {
+      await requireAuth(['ADMIN']);
+      fetchTaskProofs();
+    });
+  </script>
+</body>
+</html>

@@ -3,79 +3,141 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Admin Command Center | SINEX</title>
+  <title>Admin Operations Center | SINEX</title>
   <link rel="stylesheet" href="../assets/css/style.css">
   <link rel="stylesheet" href="../assets/css/responsive.css">
+  <style>
+    body { background: #080c14; color: #ffffff; font-family: system-ui, -apple-system, sans-serif; padding: 1.5rem; }
+    .admin-nav { display: flex; gap: 1rem; border-bottom: 1px solid #1e293b; padding-bottom: 1rem; margin-bottom: 1.5rem; }
+    .admin-nav-item { color: var(--sinex-text-muted, #94a3b8); text-decoration: none; font-weight: 600; padding: 0.5rem 1rem; border-radius: 6px; }
+    .admin-nav-item.active, .admin-nav-item:hover { background: #00d4ff22; color: #00d4ff; }
+    
+    .grid-3 { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 1rem; margin-bottom: 2rem; }
+    .stat-card { background: #0f172a; border: 1px solid #1e293b; padding: 1.25rem; border-radius: 10px; }
+    .stat-val { font-size: 2rem; font-weight: 800; color: #00d4ff; margin-top: 0.3rem; }
+    
+    /* Pop Toast Notification */
+    #adminToast {
+      display: none;
+      position: fixed;
+      top: 20px;
+      right: 20px;
+      background: #0f172a;
+      border: 2px solid #00d4ff;
+      color: #fff;
+      padding: 1rem 1.25rem;
+      border-radius: 10px;
+      box-shadow: 0 10px 25px rgba(0, 212, 255, 0.25);
+      z-index: 10000;
+      animation: popIn 0.35s ease;
+    }
+    @keyframes popIn { 0% { opacity: 0; transform: scale(0.85); } 100% { opacity: 1; transform: scale(1); } }
+  </style>
 </head>
-<body style="background: var(--sinex-bg); color: #ffffff; min-height: 100vh; padding-bottom: 5rem;">
+<body>
 
-  <header style="background: #111827; border-bottom: 1px solid var(--sinex-border); padding: 1rem; position: sticky; top: 0; z-index: 100;">
-    <div style="max-width: 1400px; margin: 0 auto; display: flex; align-items: center; justify-content: space-between;">
-      <div style="display: flex; align-items: center; gap: 0.75rem;">
-        <h2 style="margin: 0; font-size: 1.25rem; font-weight: 800; color: var(--sinex-teal);">SINEX</h2>
-        <span style="background: rgba(239, 68, 68, 0.15); color: #ef4444; padding: 0.2rem 0.5rem; border-radius: 4px; font-size: 0.75rem; font-weight: 700;">SYSTEM ADMIN</span>
-      </div>
-      <div style="display: flex; align-items: center; gap: 1rem;">
-        <a href="fraud.html" style="text-decoration: none; font-size: 1rem; background: rgba(239, 68, 68, 0.2); color: #ef4444; padding: 0.2rem 0.6rem; border-radius: 4px; font-weight: 700;">⚠️ 3 Fraud Alerts</a>
-        <a href="settings.html" style="text-decoration: none; font-size: 1.2rem;">⚙️</a>
-      </div>
-    </div>
-  </header>
-
-  <main style="max-width: 1400px; margin: 0 auto; padding: 1.25rem 1rem;">
-    <div class="card-sinex-hero" style="margin-bottom: 1.5rem; padding: 1.5rem; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1rem;">
+  <!-- Audio Alert Popup Toast -->
+  <div id="adminToast">
+    <div style="display: flex; align-items: center; gap: 0.75rem;">
+      <span style="font-size: 1.5rem;">🚨</span>
       <div>
-        <h2 style="margin: 0 0 0.5rem 0;">System Overview</h2>
-        <p style="margin: 0; font-size: 0.875rem; color: var(--sinex-text-muted);">Monitor platform traffic, user payouts, active client campaigns, and security flags.</p>
-      </div>
-      <a href="reports.html" class="btn-sinex-primary" style="padding: 0.6rem 1.25rem; text-decoration: none; width: auto;">Export System Report</a>
-    </div>
-
-    <!-- System Metrics -->
-    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 1rem; margin-bottom: 1.5rem;">
-      <div class="card-sinex-hero" style="padding: 1.25rem;">
-        <div style="font-size: 0.8rem; color: var(--sinex-text-muted); margin-bottom: 0.35rem;">Total Users</div>
-        <div style="font-size: 1.5rem; font-weight: 800; color: #ffffff;">48,290</div>
-        <a href="users.html" style="font-size: 0.75rem; color: var(--sinex-teal); text-decoration: none; font-weight: 700; margin-top: 0.5rem; display: inline-block;">Manage Users →</a>
-      </div>
-
-      <div class="card-sinex-hero" style="padding: 1.25rem;">
-        <div style="font-size: 0.8rem; color: var(--sinex-text-muted); margin-bottom: 0.35rem;">Active Clients</div>
-        <div style="font-size: 1.5rem; font-weight: 800; color: #ffffff;">1,240</div>
-        <a href="clients.html" style="font-size: 0.75rem; color: var(--sinex-teal); text-decoration: none; font-weight: 700; margin-top: 0.5rem; display: inline-block;">Manage Clients →</a>
-      </div>
-
-      <div class="card-sinex-hero" style="padding: 1.25rem;">
-        <div style="font-size: 0.8rem; color: var(--sinex-text-muted); margin-bottom: 0.35rem;">Pending Payout Requests</div>
-        <div style="font-size: 1.5rem; font-weight: 800; color: #eab308;">$14,850.00</div>
-        <a href="withdrawals.html" style="font-size: 0.75rem; color: var(--sinex-teal); text-decoration: none; font-weight: 700; margin-top: 0.5rem; display: inline-block;">Process Withdrawals →</a>
-      </div>
-
-      <div class="card-sinex-hero" style="padding: 1.25rem;">
-        <div style="font-size: 0.8rem; color: var(--sinex-text-muted); margin-bottom: 0.35rem;">Campaign Escrow Holdings</div>
-        <div style="font-size: 1.5rem; font-weight: 800; color: #10b981;">$185,400.00</div>
-        <a href="campaigns.html" style="font-size: 0.75rem; color: var(--sinex-teal); text-decoration: none; font-weight: 700; margin-top: 0.5rem; display: inline-block;">View Campaigns →</a>
+        <strong style="color: #00d4ff;" id="toastTitle">System Alert</strong>
+        <div style="font-size: 0.8rem; color: #cbd5e1;" id="toastBody">New user activity recorded</div>
       </div>
     </div>
+  </div>
 
-    <!-- Admin Operations Grid -->
-    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1rem;">
-      <a href="campaign-review.html" class="card-sinex-hero" style="padding: 1.25rem; text-decoration: none; color: #fff;">
-        <h3 style="margin: 0 0 0.5rem 0; font-size: 1rem; color: var(--sinex-teal);">📋 Campaign Approvals (5)</h3>
-        <p style="margin: 0; font-size: 0.8rem; color: var(--sinex-text-muted);">Review new advertiser campaign submissions before public launch.</p>
-      </a>
+  <div style="max-width: 1200px; margin: 0 auto;">
+    
+    <header style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem;">
+      <div>
+        <h2 style="margin: 0; font-weight: 800; color: #ffffff;">⚡ SINEX Admin Control Hub</h2>
+        <p style="margin: 0.2rem 0 0 0; font-size: 0.825rem; color: #94a3b8;">Rexify & PandaCash Operations Monitoring</p>
+      </div>
+      <button onclick="logoutUser()" class="btn-sinex-primary" style="padding: 0.5rem 1rem; width: auto;">Logout 🚪</button>
+    </header>
 
-      <a href="disputes.html" class="card-sinex-hero" style="padding: 1.25rem; text-decoration: none; color: #fff;">
-        <h3 style="margin: 0 0 0.5rem 0; font-size: 1rem; color: #eab308;">⚖️ Open Disputes (12)</h3>
-        <p style="margin: 0; font-size: 0.8rem; color: var(--sinex-text-muted);">Resolve conflicting task submissions between clients and workers.</p>
-      </a>
+    <!-- Admin Navigation Tabs -->
+    <nav class="admin-nav">
+      <a href="dashboard.html" class="admin-nav-item active">📊 Overview</a>
+      <a href="users.html" class="admin-nav-item">👥 User Management</a>
+      <a href="task-proofs.html" class="admin-nav-item">📸 Task Proofs</a>
+    </nav>
 
-      <a href="verification.html" class="card-sinex-hero" style="padding: 1.25rem; text-decoration: none; color: #fff;">
-        <h3 style="margin: 0 0 0.5rem 0; font-size: 1rem; color: #10b981;">🆔 KYC Verifications (34)</h3>
-        <p style="margin: 0; font-size: 0.8rem; color: var(--sinex-text-muted);">Verify user identification documents and identity proofs.</p>
-      </a>
+    <!-- Stats Row -->
+    <div class="grid-3">
+      <div class="stat-card">
+        <span style="font-size: 0.75rem; color: #94a3b8; font-weight: 700;">REGISTERED USERS</span>
+        <div class="stat-val" id="totalUsersCount">0</div>
+      </div>
+      <div class="stat-card">
+        <span style="font-size: 0.75rem; color: #94a3b8; font-weight: 700;">PENDING TASK PROOFS</span>
+        <div class="stat-val" style="color: #fbbf24;" id="pendingTasksCount">0</div>
+      </div>
+      <div class="stat-card">
+        <span style="font-size: 0.75rem; color: #94a3b8; font-weight: 700;">ENGINE STATUS</span>
+        <div class="stat-val" style="color: #10b981;">🟢 Active</div>
+      </div>
     </div>
-  </main>
 
+    <!-- Live System Logs -->
+    <div class="card-sinex-hero" style="background: #0f172a; border: 1px solid #1e293b; padding: 1.25rem; border-radius: 10px;">
+      <h3 style="margin-top: 0; color: #00d4ff; font-size: 1.1rem;">📜 Live Audit Log Feed</h3>
+      <div id="logsFeed" style="display: flex; flex-direction: column; gap: 0.5rem; max-height: 300px; overflow-y: auto;">
+        <div style="color: #94a3b8; font-size: 0.85rem;">Listening for real-time activities...</div>
+      </div>
+    </div>
+
+  </div>
+
+  <script src="../assets/css/js/api.js"></script>
+  <script>
+    let knownUserCount = 0;
+
+    function triggerToast(title, body) {
+      const toast = document.getElementById('adminToast');
+      document.getElementById('toastTitle').innerText = title;
+      document.getElementById('toastBody').innerText = body;
+      toast.style.display = 'block';
+
+      if ('speechSynthesis' in window) {
+        const synth = new SpeechSynthesisUtterance("Alert: " + body);
+        window.speechSynthesis.speak(synth);
+      }
+
+      setTimeout(() => { toast.style.display = 'none'; }, 4000);
+    }
+
+    async function loadStats() {
+      const res = await apiRequest('/admin/stats', 'GET');
+      if (res && res.success) {
+        const { totalUsers, pendingTasks, recentLogs } = res.data;
+
+        document.getElementById('totalUsersCount').innerText = totalUsers;
+        document.getElementById('pendingTasksCount').innerText = pendingTasks;
+
+        if (knownUserCount > 0 && totalUsers > knownUserCount) {
+          triggerToast("🎉 New User Registered!", "A new member just joined SINEX.");
+        }
+        knownUserCount = totalUsers;
+
+        const feedElem = document.getElementById('logsFeed');
+        if (recentLogs && recentLogs.length > 0) {
+          feedElem.innerHTML = recentLogs.map(l => `
+            <div style="background: #1e293b; padding: 0.6rem 0.8rem; border-radius: 6px; font-size: 0.8rem; display: flex; justify-content: space-between;">
+              <span><strong>[${l.action}]</strong> ${l.details || ''}</span>
+              <span style="color: #94a3b8;">${new Date(l.createdAt).toLocaleTimeString()}</span>
+            </div>
+          `).join('');
+        }
+      }
+    }
+
+    document.addEventListener('DOMContentLoaded', async () => {
+      await requireAuth(['ADMIN']);
+      loadStats();
+      setInterval(loadStats, 6000); // Polling every 6 seconds
+    });
+  </script>
 </body>
 </html>
